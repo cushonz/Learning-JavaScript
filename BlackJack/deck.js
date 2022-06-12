@@ -23,11 +23,14 @@ class Deck{
       }
 
     /**
-     *  Picks a card from the deck
+     *  Picks a card from the deck and removes from remaining cards in deck
      * @returns {selectedCard} Card picked from the deck
      */
     pickCard(){
-        let selection = this.cards[this.getRandomInt(52)];
+        let toPick = this.getRandomInt(52);
+        let selection = this.cards[toPick];
+        // Removes card from deck
+        this.cards.splice(toPick,1);
         
         return selection
     }
