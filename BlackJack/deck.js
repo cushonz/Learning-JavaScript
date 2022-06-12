@@ -1,6 +1,6 @@
 class Deck{
     constructor(){
-        
+
         // Empty array to populate with cards
         this.cards = [];
 
@@ -12,16 +12,30 @@ class Deck{
                 this.cards.push(`${numb[value]} of ${suits[suit]}`);
     }
 
+
+    /**
+     *  Helper function to generate a random integer
+     * @param max
+     * @returns {number}
+     */
     getRandomInt(max) {
         return Math.floor(Math.random() * max);
       }
 
+    /**
+     *  Picks a card from the deck
+     * @returns {selectedCard} Card picked from the deck
+     */
     pickCard(){
         let selection = this.cards[this.getRandomInt(52)];
         
         return selection
     }
 
+    /**
+     * Extract the numerical value from the provided card
+     * @param selection Raw number value.
+     */
     extractCardNumber(selection){
         let result = selection.substring(0,2);
         if (isNaN(result[1]))
@@ -32,6 +46,6 @@ class Deck{
     }
 }
 
-deck = new Deck();
+module.exports = Deck;
 
 
