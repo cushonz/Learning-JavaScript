@@ -10,13 +10,13 @@ const math = require("math");
 /**
  * Retrives all moves a given pokemon can learn
  * @param pokemon a Pokemon object
+ * @param learnable array to be populated with learnable moveset
  * @returns {*[]} List of moves the pokemon can learn
  */
 
-function getMoves(pokemon){
+function getMoves(pokemon,learnable){
     // URL to scrape
     const URL = encodeURI('https://pokemon.fandom.com/wiki/'+pokemon.name);
-    let learnable = [];
     let lvl, name, power, accuracy, PP, type, category;
 
     axios.get(URL).then((response) => {
@@ -33,7 +33,7 @@ function getMoves(pokemon){
 
             let newMove = new Move(lvl, name, power, accuracy, PP, type, category);
             if (newMove.level.length > 3){
-                return learnable;
+                return;
             }
             else
                 learnable.push(newMove);
@@ -77,6 +77,7 @@ function pullPokemon(pokedex){
      let selection = Math.floor(Math.random() * pokedex.length-1);
      console.log(selection);
      console.log(pokedex[selection]);
+     return pokedex[selection];
 }
 
 // Pokedex to fill
@@ -85,6 +86,7 @@ const gen1dex= []
 fillDex("https://pokemon.fandom.com/wiki/List_of_Generation_I_Pok%C3%A9mon",gen1dex);
 
 
-
+exports.pullPokemon = pullPokemon;
+exports.fillDex = fillDex;
 
 
