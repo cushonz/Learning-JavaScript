@@ -17,7 +17,5 @@ function dealHand(handSize,deck){
 // Creates a deck to play from
 let cardDeck = new Deck();
 
-// Deals a hand of cards
-const dealt = dealHand(5,cardDeck);
 
 
