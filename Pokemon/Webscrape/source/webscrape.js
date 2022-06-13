@@ -1,8 +1,8 @@
 /**
  * Module built to webscrape pokemon data
  */
-const Pokemon = require('../pokemon.js');
-const Move = require('../moves');
+const Pokemon = require('./pokemonScripts/pokemon.js');
+const Move = require('./pokemonScripts/moves');
 const axios = require("axios");
 const cheerio = require("cheerio");
 const math = require("math");
@@ -68,21 +68,22 @@ function fillDex(URL, pokedex){
             pokedex.push(mon);
             i+=6;
         }
-
-        for (let mon = 0; mon < pokedex.length-1; mon++) {
-            pokedex[mon].learnable = getMoves(pokedex[mon]);
-        }
-        console.log(pokedex[0].learnable);
+        pullPokemon(pokedex);
     });
 
 }
 
-
+function pullPokemon(pokedex){
+     let selection = Math.floor(Math.random() * pokedex.length-1);
+     console.log(selection);
+     console.log(pokedex[selection]);
+}
 
 // Pokedex to fill
 const gen1dex= []
 // Populate poked
 fillDex("https://pokemon.fandom.com/wiki/List_of_Generation_I_Pok%C3%A9mon",gen1dex);
+
 
 
 
